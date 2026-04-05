@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDatabase } from '../context/DatabaseContext';
 import type { Client, Ticket } from '../context/DatabaseContext';
-import { LogOut, Clock, CheckCircle2, AlertCircle, Building, Loader2, Send } from 'lucide-react';
+import { LogOut, Clock, CheckCircle2, AlertCircle, Building, Loader2, Send, FileText } from 'lucide-react';
 import { sendEmailNotification } from '../utils/emailService';
 
 export default function ClientDashboard() {
@@ -143,6 +143,31 @@ export default function ClientDashboard() {
               This intelligence dashboard surfaces real-time telemetry regarding your engineering deployment. Sparkwaves technical teams update this matrix upon conclusion of rigorous sprint milestones.
             </p>
           </section>
+
+          {/* Official Documents */}
+          {activeClient.documents && activeClient.documents.length > 0 && (
+            <section>
+              <h2 className="text-sm uppercase tracking-widest text-slate-400 font-bold mb-6 flex items-center gap-2">
+                <FileText className="w-5 h-5 text-slate-500" /> Official Documents & Billing
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {activeClient.documents.map(doc => (
+                  <a key={doc.id} href={doc.link} target="_blank" rel="noreferrer" className="bg-slate-900 border border-slate-800 hover:border-brand-500/50 transition rounded-2xl p-6 flex items-center gap-4 group">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${doc.type === 'Bill' ? 'bg-amber-500/10 text-amber-500 group-hover:bg-amber-500/20' : 'bg-blue-500/10 text-blue-500 group-hover:bg-blue-500/20'} transition-colors`}>
+                      <FileText className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-lg font-bold text-white truncate group-hover:text-brand-400 transition-colors">{doc.title}</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{doc.type}</span>
+                        <span className="text-[10px] text-slate-600">• {new Date(doc.date).toLocaleDateString()}</span>
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Ticket History */}
           <section>

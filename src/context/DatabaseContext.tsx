@@ -21,6 +21,14 @@ export interface Product {
   progressPercentage?: number;
 }
 
+export interface ClientDocument {
+  id: string;
+  title: string;
+  link: string;
+  type: 'Bill' | 'Agreement' | 'Other';
+  date: string;
+}
+
 export interface Client {
   id: string;
   email: string; // Used for Portal Login ID
@@ -29,6 +37,7 @@ export interface Client {
   projectName: string;
   projectStatus: 'Planning' | 'Development' | 'Testing' | 'Deployed';
   progressPercentage: number; // 0 to 100
+  documents?: ClientDocument[];
 }
 
 export interface Service {

@@ -4,7 +4,7 @@ import { useDatabase } from '../context/DatabaseContext';
 import { 
   Users, Ticket, MessageSquare, Briefcase, LogOut, 
   Settings, Trash2, Plus, Mail, Activity, Cloud, PhoneCall, 
-  CheckCircle, Eye, Layout, List 
+  CheckCircle, Eye, Layout, List, FileText 
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -25,7 +25,8 @@ export default function AdminDashboard() {
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<'products' | 'services' | 'testimonials' | 'clients' | null>(null);
+  const [modalType, setModalType] = useState<'products' | 'services' | 'testimonials' | 'clients' | 'document' | null>(null);
+  const [targetClientId, setTargetClientId] = useState<string | null>(null);
   
   // Generic Form State
   const [formData, setFormData] = useState<any>({});
@@ -62,6 +63,7 @@ export default function AdminDashboard() {
 
   const deleteProduct = (id: string) => setProducts(products.filter(p => p.id !== id));
   const deleteTestimonial = (id: string) => setTestimonials(testimonials.filter(t => t.id !== id));
+  const deleteClient = (id: string) => setClients(clients.filter(c => c.id !== id));
 
   const openModal = (type: typeof modalType) => {
     setModalType(type);
@@ -83,11 +85,19 @@ export default function AdminDashboard() {
       setClients([{ 
         id: newId, email: formData.email, portalPassword: formData.password, 
         company: formData.company, projectName: formData.projectName, 
-        projectStatus: 'Planning', progressPercentage: 0 
+        projectStatus: 'Planning', progressPercentage: 0, documents: []
       }, ...clients]);
+    } else if (modalType === 'document' && targetClientId) {
+      const client = clients.find(c => c.id === targetClientId);
+      if (client) {
+        const newDoc: any = { id: newId, title: formData.title, link: formData.link, type: formData.type || 'Bill', date: new Date().toISOString() };
+        const updatedClient = { ...client, documents: [...(client.documents || []), newDoc] };
+        setClients(clients.map(c => c.id === targetClientId ? updatedClient : c));
+      }
     }
     
     setIsModalOpen(false);
+    setTargetClientId(null);
   };
 
   return (
@@ -294,6 +304,83 @@ export default function AdminDashboard() {
               </div>
             )}
 
+            {/* Clients Tab Render */}
+            {activeTab === 'clients' && (
+              <div className="divide-y divide-slate-800">
+                {clients.length === 0 ? <p className="p-10 text-slate-500">No active clients.</p> : clients.map(c => (
+                  <div key={c.id} className="p-8 hover:bg-white/[0.02] transition group">
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="flex-1">
+                        <h4 className="text-2xl font-bold text-white flex items-center gap-3">
+                          {c.company}
+                          <span className={`px-3 py-1 text-[10px] uppercase font-bold rounded-full ${c.projectStatus === 'Deployed' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-brand-500/20 text-brand-400'}`}>
+                            {c.projectStatus}
+                          </span>
+                        </h4>
+                        <p className="text-slate-400 text-sm mt-1">{c.projectName}</p>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-slate-500">
+                        <span className="font-mono bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">{c.email}</span>
+                        <div className="flex gap-2">
+                          <button onClick={() => { setTargetClientId(c.id); openModal('document'); }} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition text-xs font-bold font-mono">
+                            + Bill / Doc
+                          </button>
+                          <button onClick={() => deleteClient(c.id)} className="p-2 text-red-500 hover:bg-red-500/20 rounded-lg transition">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 mb-6">
+                       <div className="flex-1">
+                          <div className="flex justify-between text-[10px] uppercase font-bold text-slate-500 mb-2">
+                            <span>Project Progress</span>
+                            <span className="text-brand-400">{c.progressPercentage}%</span>
+                          </div>
+                          <div className="h-2 bg-slate-950 rounded-full border border-white/5 overflow-hidden">
+                            <div className="h-full bg-brand-500 shadow-[0_0_10px_rgba(20,184,166,0.5)] transition-all duration-500" style={{ width: `${c.progressPercentage}%` }}></div>
+                          </div>
+                       </div>
+                       <input 
+                          type="number" min="0" max="100" 
+                          defaultValue={c.progressPercentage || 0}
+                          className="w-16 bg-slate-950 border border-slate-800 rounded-lg py-1 text-center font-bold text-brand-400 outline-none focus:border-brand-500 transition"
+                          onKeyDown={(e) => {
+                            if(e.key === 'Enter') {
+                              const val = parseInt(e.currentTarget.value);
+                              if(val >= 0 && val <= 100) {
+                                setClients(clients.map(client => client.id === c.id ? {...client, progressPercentage: val} : client));
+                                e.currentTarget.blur();
+                              }
+                            }
+                          }}
+                       />
+                    </div>
+
+                    {c.documents && c.documents.length > 0 && (
+                      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <h5 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Attached Documents</h5>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                          {c.documents.map(doc => (
+                            <a key={doc.id} href={doc.link} target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-slate-900 border border-slate-800 p-3 rounded-lg hover:border-brand-500/50 transition truncate">
+                              <span className={`w-8 h-8 rounded-md flex items-center justify-center shrink-0 ${doc.type === 'Bill' ? 'bg-amber-500/20 text-amber-500' : 'bg-blue-500/20 text-blue-500'}`}>
+                                <FileText className="w-4 h-4" />
+                              </span>
+                              <div className="truncate">
+                                <p className="text-xs font-bold text-slate-300 truncate">{doc.title}</p>
+                                <p className="text-[10px] text-slate-500">{doc.type}</p>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Products Tab */}
             {activeTab === 'products' && (
                <div className="divide-y divide-slate-800">
@@ -458,6 +545,20 @@ export default function AdminDashboard() {
                      <div className="space-y-2"><label className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Access Email</label><input required type="email" value={formData.email || ''} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white outline-none focus:border-brand-500 shadow-inner" /></div>
                      <div className="space-y-2"><label className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Secure Key</label><input required type="text" value={formData.password || ''} onChange={e => setFormData({...formData, password: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white outline-none focus:border-brand-500 shadow-inner" /></div>
                    </div>
+                </>
+              )}
+
+              {modalType === 'document' && (
+                <>
+                   <div className="space-y-2"><label className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Document Title</label><input required autoFocus type="text" value={formData.title || ''} onChange={e => setFormData({...formData, title: e.target.value})} placeholder="e.g. Q3 Invoice" className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white outline-none focus:border-brand-500 shadow-inner" /></div>
+                   <div className="space-y-2"><label className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Document Category</label>
+                     <select value={formData.type || 'Bill'} onChange={e => setFormData({...formData, type: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white outline-none focus:border-brand-500 shadow-inner">
+                       <option value="Bill">Bill / Invoice</option>
+                       <option value="Agreement">Legal Agreement</option>
+                       <option value="Other">Other Document</option>
+                     </select>
+                   </div>
+                   <div className="space-y-2"><label className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">File Asset Link</label><input required type="url" value={formData.link || ''} onChange={e => setFormData({...formData, link: e.target.value})} placeholder="https://" className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white outline-none focus:border-brand-500 shadow-inner" /></div>
                 </>
               )}
 
