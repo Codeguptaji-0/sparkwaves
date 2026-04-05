@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /swp-command-center/
+
+Sitemap: https://sparkwavsproduction.me/sitemap.xml
