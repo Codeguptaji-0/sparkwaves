@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDatabase } from '../context/DatabaseContext';
 import { 
-  LayoutDashboard, Users, Ticket, MessageSquare, Briefcase, LogOut, 
+  Users, Ticket, MessageSquare, Briefcase, LogOut, 
   Settings, Trash2, Plus, Mail, Activity, Cloud, PhoneCall, 
-  CheckCircle, Eye, EyeOff, Layout, List 
+  CheckCircle, Eye, Layout, List 
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -61,9 +61,7 @@ export default function AdminDashboard() {
   ];
 
   const deleteProduct = (id: string) => setProducts(products.filter(p => p.id !== id));
-  const deleteService = (id: string) => setServices(services.filter(s => s.id !== id));
   const deleteTestimonial = (id: string) => setTestimonials(testimonials.filter(t => t.id !== id));
-  const deleteClient = (id: string) => setClients(clients.filter(c => c.id !== id));
 
   const openModal = (type: typeof modalType) => {
     setModalType(type);
