@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { 
   collection, 
@@ -112,7 +113,7 @@ const DEFAULT_PRODUCTS: Product[] = [
     id: '1',
     name: "E-comos",
     description: "The Ultimate E-Commerce Hub. Automate listings, pack recording, and dispute resolutions natively.",
-    useCases: ["Auto-Listing", "Quality Dispuation"],
+    useCases: ["Auto-Listing", "Quality Disputes"],
     model: "3-Tier Sub",
     features: ["Product Packaging Recorder", "Intelligent Analytics", "Workflow Scaling"],
     progressPercentage: 50
@@ -191,7 +192,11 @@ export const DatabaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // --- Firestore Real-Time Logic ---
   useEffect(() => {
     // 1. Helper for collection syncing
-    const syncCollection = (collName: string, stateSetter: any, defaultData?: any[]) => {
+    const syncCollection = <T extends { id: string }>(
+      collName: string,
+      stateSetter: (data: T[]) => void,
+      defaultData?: T[]
+    ) => {
       const q = query(collection(db, collName), orderBy('id', 'asc'));
       return onSnapshot(q, (snapshot) => {
         if (snapshot.empty && defaultData) {
@@ -200,7 +205,7 @@ export const DatabaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
              await setDoc(doc(db, collName, item.id), item);
           });
         } else {
-          const items = snapshot.docs.map(doc => doc.data() as any);
+          const items = snapshot.docs.map(doc => doc.data() as T);
           stateSetter(items);
         }
       });

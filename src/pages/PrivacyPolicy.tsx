@@ -1,7 +1,15 @@
 import { ShieldCheck, Lock, Eye, Database, Link as LinkIcon, Mail } from 'lucide-react';
 import Footer from '../components/Footer';
 
+import { useSEO } from '../hooks/useSEO';
+
 const PrivacyPolicy = () => {
+  useSEO({
+    title: 'Privacy Policy - Sparkwaves',
+    description: 'Read the Sparkwaves privacy policy to understand how we protect and handle your personal and enterprise data.',
+    keywords: 'privacy policy, sparkwaves, legal data security, GDPR compliance'
+  });
+
   return (
     <>
       <main className="py-32 bg-slate-950 min-h-screen text-slate-300 relative z-10 selection:bg-brand-500/30">
@@ -81,8 +89,8 @@ const PrivacyPolicy = () => {
               <p className="text-slate-400 mb-6">
                 For legal inquiries or GDPR data-deletion requests, contact our compliance engineering team directly.
               </p>
-              <a href="mailto:surajnarayangupta2004@gmail.com" className="inline-flex py-3 px-6 bg-slate-900 border border-slate-700 rounded-xl text-white hover:border-brand-400 transition-colors font-medium">
-                surajnarayangupta2004@gmail.com
+              <a href="mailto:founder@sparkwavsproduction.me" className="inline-flex py-3 px-6 bg-slate-900 border border-slate-700 rounded-xl text-white hover:border-brand-400 transition-colors font-medium">
+                founder@sparkwavsproduction.me
               </a>
             </section>
           </div>

@@ -1,0 +1,28 @@
+# Sparkwaves (Full Documentation)
+
+> We build high-performance web applications and enterprise SaaS solutions designed for maximum scale and user engagement.
+
+Sparkwaves Production fuses B2B enterprise engineering with visually stunning modern aesthetics. This file serves as the full machine-readable map of our public pages, products, services, and developer portals.
+
+## Products
+
+- [E-comos](https://sparkwavsproduction.me/products): Ultimate E-Commerce Hub. Automate listings, packaging recording, and quality dispute resolutions natively.
+- [Eudsaas](https://sparkwavsproduction.me/products): Smart School Management Ecosystem uniting Principals, Teachers, and Parents in a completely paperless environment.
+- [FuelOps Geo-Shift](https://sparkwavsproduction.me/products): Private B2B Shift Management for Fuel Pumps backed by facial AI logs and deep geo-fences.
+
+## B2B Services
+
+- [Cloud & Infrastructure](https://sparkwavsproduction.me/services): Custom hosted architecture, robust IaaS/PaaS deployments, and web hosting.
+- [Web & App Development](https://sparkwavsproduction.me/services): Full-stack web applications, native mobile apps, and custom AI-powered experiences.
+- [Data Intelligence](https://sparkwavsproduction.me/services): Big data pipelines, custom predictive analysis, and analytics dashboard engineering.
+- [Automation & Growth](https://sparkwavsproduction.me/services): Operational workflow automation, performance marketing setups, and programmatic lead generation.
+
+## Company & Resources
+
+- [About Us](https://sparkwavsproduction.me/about): Learn about our origin, the hybrid SaaS advantage, and our founders.
+- [Meet the Team](https://sparkwavsproduction.me/team): Meet the principal engineers, software developers, and founders behind Sparkwaves.
+- [Product Updates](https://sparkwavsproduction.me/changelog): Stay updated with the latest releases, features, and engineering logs.
+- [Book a Demo](https://sparkwavsproduction.me/demo): Request a live 1-on-1 walkthrough of our SaaS systems with our developers.
+- [Contact Support](https://sparkwavsproduction.me/contact): Open technical support tickets, chat on WhatsApp, or query sales.
+- [Privacy Policy](https://sparkwavsproduction.me/privacy-policy): Read our customer privacy policy and data governance terms.
+- [Terms of Service](https://sparkwavsproduction.me/terms-of-service): Review the licensing and usage terms for Sparkwaves custom software.

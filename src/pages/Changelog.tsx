@@ -1,6 +1,14 @@
 import { Rocket, ShieldCheck, TerminalSquare } from 'lucide-react';
 
+import { useSEO } from '../hooks/useSEO';
+
 const Changelog = () => {
+  useSEO({
+    title: 'Product Changelog & Updates - Sparkwaves',
+    description: 'Stay updated with the latest releases, features, improvements, and system updates from Sparkwaves.',
+    keywords: 'changelog, product updates, software development log, new SaaS features, sparkwaves releases'
+  });
+
   return (
     <main className="py-32 bg-slate-950 min-h-screen text-slate-300 relative z-10">
       <div className="container mx-auto px-6 md:px-12 max-w-4xl">

@@ -6,8 +6,17 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Cloud, Info, PhoneCall } from 'lucide-react';
 import { useDatabase } from '../context/DatabaseContext';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function Home() {
   const { settings } = useDatabase();
+  
+  useSEO({
+    title: 'Sparkwaves - Enterprise SaaS & Development Agency',
+    description: 'We build high-performance web applications and enterprise SaaS solutions designed for maximum scale and user engagement.',
+    keywords: 'Sparkwaves, SaaS agency, enterprise software development, web application engineering, automation, custom developer'
+  });
+
   return (
     <>
       <main>
@@ -79,7 +88,7 @@ export default function Home() {
                 <div className="h-px bg-slate-800 w-full"></div>
                 <div className="flex flex-col">
                   <span className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Enterprise Inquiries</span>
-                  <a href="mailto:surajnarayangupta2004@gmail.com" className="text-md font-medium text-slate-300 hover:text-blue-400 transition-colors">surajnarayangupta2004@gmail.com</a>
+                  <a href="mailto:founder@sparkwavsproduction.me" className="text-md font-medium text-slate-300 hover:text-blue-400 transition-colors">founder@sparkwavsproduction.me</a>
                 </div>
               </div>
             </div>

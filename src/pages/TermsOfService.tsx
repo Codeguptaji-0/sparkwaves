@@ -1,7 +1,15 @@
 import { Scale, FileText, AlertTriangle, Cpu, Globe } from 'lucide-react';
 import Footer from '../components/Footer';
 
+import { useSEO } from '../hooks/useSEO';
+
 const TermsOfService = () => {
+  useSEO({
+    title: 'Terms of Service - Sparkwaves',
+    description: 'Review the terms and conditions for using Sparkwaves services, custom development, and SaaS applications.',
+    keywords: 'terms of service, sparkwaves, legal terms, SaaS agreement, custom software developer terms'
+  });
+
   return (
     <>
       <main className="py-32 bg-slate-950 min-h-screen text-slate-300 relative z-10 selection:bg-brand-500/30">

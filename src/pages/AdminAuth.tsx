@@ -2,19 +2,27 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User, AlertCircle } from 'lucide-react';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function AdminAuth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  useSEO({
+    title: 'Command Center Auth - Sparkwaves',
+    description: 'Secure admin portal authorization center.',
+    keywords: 'admin, secure login, sparkwaves'
+  });
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
     if (
-      (email === 'suraj@admin.swp' && password === '9891@Suraj&Swp#admin') ||
-      (email === 'nitesh@admin.swp' && password === '8601@Nitesh#Swp&admin')
+      (email === 'suraj.gupta@sparkwavsproduction.me' && password === '9891@Suraj&Swp#admin') ||
+      (email === 'nitesh.chauhan@sparkwavsproduction.me' && password === '8601@Nitesh#Swp&admin')
     ) {
       localStorage.setItem('swp_admin_auth', 'true');
       localStorage.setItem('swp_admin_user', email);
@@ -57,7 +65,7 @@ export default function AdminAuth() {
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="off"
                 className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-slate-600"
-                placeholder="system@admin.swp"
+                placeholder="admin@sparkwavsproduction.me"
               />
             </div>
           </div>

@@ -3,12 +3,20 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDatabase } from '../context/DatabaseContext';
 import { Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function ClientPortalAuth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { clients } = useDatabase();
+
+  useSEO({
+    title: 'Client Portal Login - Sparkwaves',
+    description: 'Secure client portal login.',
+    keywords: 'client, portal login, sparkwaves'
+  });
 
   useEffect(() => {
     if (localStorage.getItem('swp_client_auth') === 'true') {

@@ -3,9 +3,9 @@
 
 export const sendEmailNotification = async (type: 'Ticket' | 'Query', data: Record<string, unknown>) => {
   const adminEmails = [
-    'surajnarayangupta2004@gmail.com',
-    'suraj9891@1vnm34.onmicrosoft.com',
-    'niteshji833@gmail.com'
+    'founder@sparkwavsproduction.me',
+    'dev@sparkwavsproduction.me',
+    'support@sparkwavsproduction.me'
   ];
 
   console.log(`[EMAIL DISPATCH SYSTEM - ${type.toUpperCase()}]`);

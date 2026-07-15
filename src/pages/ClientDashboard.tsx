@@ -5,11 +5,22 @@ import type { Client, Ticket } from '../context/DatabaseContext';
 import { LogOut, Clock, CheckCircle2, AlertCircle, Building, Loader2, Send, FileText } from 'lucide-react';
 import { sendEmailNotification } from '../utils/emailService';
 
+const generateId = () => Math.random().toString(36).substr(2, 9);
+
+import { useSEO } from '../hooks/useSEO';
+
 export default function ClientDashboard() {
   const navigate = useNavigate();
   const { clients, tickets, setTickets } = useDatabase();
-  const [activeClient, setActiveClient] = useState<Client | null>(null);
-  const [clientTickets, setClientTickets] = useState<Ticket[]>([]);
+  const clientId = localStorage.getItem('swp_client_id');
+  const activeClient = clients.find(c => c.id === clientId) || null;
+  const clientTickets = activeClient ? tickets.filter(t => t.email === activeClient.email) : [];
+
+  useSEO({
+    title: 'Client Workspace - Sparkwaves',
+    description: 'Secure client workspace dashboard.',
+    keywords: 'client dashboard, workspace, sparkwaves'
+  });
   
   // New Support Ticket State
   const [subject, setSubject] = useState('');
@@ -18,27 +29,23 @@ export default function ClientDashboard() {
 
   useEffect(() => {
     const isAuth = localStorage.getItem('swp_client_auth');
-    const clientId = localStorage.getItem('swp_client_id');
+    const cid = localStorage.getItem('swp_client_id');
     
-    if (isAuth !== 'true' || !clientId) {
+    if (isAuth !== 'true' || !cid) {
       navigate('/client-portal');
       return;
     }
 
-    const currentClient = clients.find(c => c.id === clientId);
-    if (!currentClient) {
-      // Client was deleted or ID invalid
-      localStorage.removeItem('swp_client_auth');
-      localStorage.removeItem('swp_client_id');
-      navigate('/client-portal');
-      return;
+    if (clients.length > 0) {
+      const currentClient = clients.find(c => c.id === cid);
+      if (!currentClient) {
+        // Client was deleted or ID invalid
+        localStorage.removeItem('swp_client_auth');
+        localStorage.removeItem('swp_client_id');
+        navigate('/client-portal');
+      }
     }
-
-    setActiveClient(currentClient);
-    
-    // Filter tickets that belong to this client's email
-    setClientTickets(tickets.filter(t => t.email === currentClient.email));
-  }, [clients, tickets, navigate]);
+  }, [clients, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('swp_client_auth');
@@ -52,7 +59,7 @@ export default function ClientDashboard() {
     
     setIsSubmitting(true);
     const newTicket: Ticket = {
-      id: Math.random().toString(36).substr(2, 9),
+      id: generateId(),
       subject: `[Client Portal] ${subject}`,
       email: activeClient.email,
       message,

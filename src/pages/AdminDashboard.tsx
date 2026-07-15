@@ -1,16 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDatabase } from '../context/DatabaseContext';
+import type { ClientDocument } from '../context/DatabaseContext';
 import { 
   Users, Ticket, MessageSquare, Briefcase, LogOut, 
   Settings, Trash2, Plus, Mail, Activity, Cloud, PhoneCall, 
   CheckCircle, Eye, Layout, List, FileText 
 } from 'lucide-react';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
-  const [user, setUser] = useState('');
+  const user = localStorage.getItem('swp_admin_user') || 'Admin';
+
+  useSEO({
+    title: 'Command Center - Sparkwaves',
+    description: 'Secure admin portal dashboard.',
+    keywords: 'admin, command center, sparkwaves'
+  });
   
   const { 
     products, setProducts, 
@@ -35,8 +44,6 @@ export default function AdminDashboard() {
     const isAuth = localStorage.getItem('swp_admin_auth');
     if (isAuth !== 'true') {
       navigate('/swp-command-center');
-    } else {
-      setUser(localStorage.getItem('swp_admin_user') || 'Admin');
     }
   }, [navigate]);
 
@@ -90,7 +97,7 @@ export default function AdminDashboard() {
     } else if (modalType === 'document' && targetClientId) {
       const client = clients.find(c => c.id === targetClientId);
       if (client) {
-        const newDoc: any = { id: newId, title: formData.title, link: formData.link, type: formData.type || 'Bill', date: new Date().toISOString() };
+        const newDoc: ClientDocument = { id: newId, title: formData.title as string, link: formData.link as string, type: (formData.type as 'Bill' | 'Agreement' | 'Other') || 'Bill', date: new Date().toISOString() };
         const updatedClient = { ...client, documents: [...(client.documents || []), newDoc] };
         setClients(clients.map(c => c.id === targetClientId ? updatedClient : c));
       }

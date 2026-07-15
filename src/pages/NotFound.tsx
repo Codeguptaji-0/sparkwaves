@@ -2,7 +2,15 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { AlertTriangle, ArrowRight, Home } from 'lucide-react';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function NotFound() {
+  useSEO({
+    title: 'Page Not Found - Sparkwaves',
+    description: 'The requested page could not be found. Go back to Sparkwaves home page to explore our services and SaaS products.',
+    keywords: '404 not found, sparkwaves, error'
+  });
+
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center relative overflow-hidden px-4">
       {/* Background Glows */}

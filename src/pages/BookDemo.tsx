@@ -4,8 +4,16 @@ import { Calendar, CheckCircle2, Building2, User, Phone, Mail, ArrowRight } from
 import { useDatabase } from '../context/DatabaseContext';
 import Footer from '../components/Footer';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function BookDemo() {
   const { demoRequests, setDemoRequests } = useDatabase();
+
+  useSEO({
+    title: 'Book a Product Demo - Sparkwaves',
+    description: 'Schedule a live demo session with our team to explore Sparkwaves products and see how our custom automation can grow your business.',
+    keywords: 'book demo, saas demo, enterprise workflow integration, school management system demo'
+  });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',

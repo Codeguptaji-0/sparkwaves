@@ -113,10 +113,19 @@ const Contact = () => {
               </div>
               <div className="w-full">
                 <h4 className="text-xl font-bold text-white">Emails</h4>
-                <div className="flex flex-col gap-2 mt-2 text-sm sm:text-base">
-                  <a href="mailto:surajnarayangupta2004@gmail.com" className="text-slate-400 hover:text-blue-400 transition-colors break-all block">surajnarayangupta2004@gmail.com</a>
-                  <a href="mailto:suraj9891@1vnm34.onmicrosoft.com" className="text-slate-400 hover:text-blue-400 transition-colors break-all block">suraj9891@1vnm34.onmicrosoft.com</a>
-                  <a href="mailto:niteshji833@gmail.com" className="text-slate-400 hover:text-blue-400 transition-colors break-all block">niteshji833@gmail.com</a>
+                 <div className="flex flex-col gap-3 mt-2 text-sm sm:text-base">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider w-20 shrink-0">Sales:</span>
+                    <a href="mailto:sales@sparkwavsproduction.me" className="text-slate-400 hover:text-blue-400 transition-colors break-all">sales@sparkwavsproduction.me</a>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider w-20 shrink-0">Support:</span>
+                    <a href="mailto:support@sparkwavsproduction.me" className="text-slate-400 hover:text-blue-400 transition-colors break-all">support@sparkwavsproduction.me</a>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1">
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider w-20 shrink-0">Founder:</span>
+                    <a href="mailto:founder@sparkwavsproduction.me" className="text-slate-400 hover:text-blue-400 transition-colors break-all">founder@sparkwavsproduction.me</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -184,9 +193,18 @@ const Contact = () => {
                   <button type="button" onClick={() => setFormType(null)} className="text-sm text-slate-400 hover:text-white transition">Cancel</button>
                 </div>
 
-                <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder={formType === 'contact' ? "Your Name" : "Ticket Subject"} className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-brand-500" />
-                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-brand-500" />
-                <textarea required value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Please detail your request..." rows={4} className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-brand-500 resize-none"></textarea>
+                <div className="space-y-1">
+                  <label htmlFor="contact-name" className="sr-only">{formType === 'contact' ? "Your Name" : "Ticket Subject"}</label>
+                  <input id="contact-name" type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder={formType === 'contact' ? "Your Name" : "Ticket Subject"} className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-brand-500" />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor="contact-email" className="sr-only">Email Address</label>
+                  <input id="contact-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-brand-500" />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor="contact-message" className="sr-only">Message / Ticket Details</label>
+                  <textarea id="contact-message" required value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Please detail your request..." rows={4} className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl py-3 px-4 focus:outline-none focus:border-brand-500 resize-none"></textarea>
+                </div>
 
                 <button disabled={isSubmitting} type="submit" className={`w-full py-4 px-6 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 ${formType === 'contact' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-emerald-500 hover:bg-emerald-600'} disabled:opacity-50 disabled:cursor-not-allowed`}>
                   {isSubmitting ? 'Processing...' : (formType === 'contact' ? 'Dispatch Query' : 'Submit Ticket')}

@@ -4,8 +4,29 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { useDatabase } from '../context/DatabaseContext';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function Products() {
   const { products } = useDatabase();
+
+  useSEO({
+    title: 'Our SaaS Products - E-comos, Eudsaas, FuelOps | Sparkwaves',
+    description: 'Discover our premium SaaS ecosystems, from automated e-commerce listings (E-comos) to school management (Eudsaas) and shift verification (FuelOps).',
+    keywords: 'E-comos, Eudsaas, FuelOps, school software, e-commerce automation, geo-fencing shift tracker, face authentication',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Sparkwaves Software Products",
+      "description": "Premium B2B enterprise software applications designed by Sparkwaves.",
+      "itemListElement": products.map((product, idx) => ({
+        "@type": "Product",
+        "position": idx + 1,
+        "name": product.name,
+        "description": product.description,
+        "url": "https://sparkwavsproduction.me/products"
+      }))
+    }
+  });
 
   // Helper function to map generic product data to beautiful UI icon configurations dynamically
   const getProductStyling = (index: number) => {

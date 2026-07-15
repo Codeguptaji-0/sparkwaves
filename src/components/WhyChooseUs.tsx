@@ -15,7 +15,7 @@ const reasons = [
   {
     icon: TrendingUp,
     title: "Business Scalability",
-    description: "Architected for hiper-growth. Our cloud-native pipelines ensure that your infrastructure scales automatically as your user base expands.",
+    description: "Architected for hyper-growth. Our cloud-native pipelines ensure that your infrastructure scales automatically as your user base expands.",
   },
   {
     icon: Target,

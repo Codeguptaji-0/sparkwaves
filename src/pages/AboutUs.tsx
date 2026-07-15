@@ -3,7 +3,14 @@ import { Target, Rocket, ShieldCheck, Zap, Cog, Activity, Code2, Globe } from 'l
 import Footer from '../components/Footer';
 import Team from '../components/Team';
 
+import { useSEO } from '../hooks/useSEO';
+
 export default function AboutUs() {
+  useSEO({
+    title: 'About Us - The Hybrid SaaS Advantage | Sparkwaves',
+    description: 'Learn about the vision, mission, and expert team behind Sparkwaves. Engineering next-generation digital infrastructure for enterprise scale.',
+    keywords: 'about sparkwaves, team, hybrid SaaS model, software agency founders, engineering vision'
+  });
   return (
     <>
       <main className="min-h-screen bg-slate-950 text-white pt-24 overflow-hidden relative selection:bg-brand-500/30">
@@ -83,7 +90,7 @@ export default function AboutUs() {
           <section className="py-24 border-t border-slate-800/50 mt-12">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">What We Do</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">We don't just write code. We architect solutions across the entire technical stack to solve real-world operational nightmares.</p>
+              <p className="text-slate-400 max-w-2xl mx-auto">We design robust, high-performance systems to solve complex operational challenges, eliminating scalability bottlenecks before they affect your bottom line.</p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -96,6 +103,32 @@ export default function AboutUs() {
                   <div className="text-brand-400 mb-6">{item.icon}</div>
                   <h4 className="text-xl font-bold mb-3">{item.title}</h4>
                   <p className="text-slate-400 text-sm">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Core Values Section */}
+          <section className="py-24 border-t border-slate-800/50">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-xs font-bold tracking-widest uppercase mb-4">
+                Our Foundation
+              </div>
+              <h2 className="text-4xl font-bold mb-4">Core Corporate Values</h2>
+              <p className="text-slate-400 max-w-2xl mx-auto">The engineering principles that guide our architecture, client partnerships, and delivery standards.</p>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { title: "Technical Excellence", desc: "We design software on clean, modular architectures that scale from day one, avoiding technical debt." },
+                { title: "Operational Precision", desc: "We replace manual bottlenecks with automated workflows, achieving extreme operational efficiency." },
+                { title: "Data Integrity", desc: "We enforce strict encryption and security protocols across all our internal and custom client pipelines." },
+                { title: "Client Trust", desc: "We establish long-term partnerships driven by uptime reliability, absolute transparency, and SLA compliance." }
+              ].map((val, i) => (
+                <div key={i} className="p-6 bg-slate-900/40 border border-slate-800 rounded-2xl hover:border-brand-500/30 transition-colors">
+                  <span className="text-3xl font-extrabold text-brand-500/30 block mb-4">0{i+1}</span>
+                  <h4 className="text-lg font-bold text-white mb-2">{val.title}</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">{val.desc}</p>
                 </div>
               ))}
             </div>

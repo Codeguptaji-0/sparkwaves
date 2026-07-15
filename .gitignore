@@ -22,3 +22,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# SEO Audits and Agentic artifacts
+.agent/
+.agents/
+dev-docs/
+ACTION-PLAN.md
+FULL-AUDIT-REPORT.md
+audit-results.json
+seo-report-*.html
+*.mp4
