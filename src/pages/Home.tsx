@@ -98,6 +98,76 @@ export default function Home() {
         <ProcessFlow />
         {settings.showReviews && <TrustSection />}
 
+        {/* FAQ Section for SEO */}
+        <section className="py-20 bg-slate-950 border-t border-white/5">
+          <div className="container mx-auto px-6 md:px-12 max-w-4xl">
+            <div className="text-center mb-12">
+              <p className="text-xs font-semibold tracking-widest text-brand-400 uppercase mb-4">
+                Common Questions
+              </p>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
+                Frequently Asked Questions
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              {/* FAQ 1 */}
+              <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl hover:border-slate-700 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3">
+                  How much does custom ERP cost in Delhi?
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Our fixed-price ERP systems for small manufacturing start at ₹50,000-2,00,000
+                  depending on modules (inventory, production, accounting, HR). Unlike agencies
+                  charging ₹50K-1L per month ongoing, we deliver complete source-code ownership
+                  with 90-day WhatsApp support included. Get a detailed quote within 48 hours.
+                </p>
+              </div>
+
+              {/* FAQ 2 */}
+              <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl hover:border-slate-700 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3">
+                  What is GeM registration and do I need it?
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  GeM (Government e-Marketplace) is India's official portal for government procurement.
+                  If you sell software, IT services, or hardware to schools, PSUs, municipal bodies,
+                  or any government office, you need GeM vendor registration. We're GeM-registered
+                  and MSME certified (UDYAM-DL-01-0063225), so we can help you get listed in the
+                  IT services category and win government tenders.
+                </p>
+              </div>
+
+              {/* FAQ 3 */}
+              <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl hover:border-slate-700 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3">
+                  How long does school software implementation take?
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Eudsaas (our school management system) takes 2-3 weeks from kick-off to live.
+                  Week 1: System setup + student/staff data migration. Week 2: Teacher and admin
+                  training (in-person or video). Week 3: Go-live with parent app rollout. We handle
+                  everything end-to-end — you focus on teaching. Includes 90-day WhatsApp support
+                  for any issues or questions.
+                </p>
+              </div>
+
+              {/* FAQ 4 - Bonus */}
+              <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl hover:border-slate-700 transition-colors">
+                <h3 className="text-xl font-bold text-white mb-3">
+                  Do you work with small businesses or only enterprises?
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  We work with both! Our clients range from 5-person factories to 500-student schools.
+                  We're MSME-certified specifically to serve small and medium businesses. Pricing is
+                  fixed per project (not per user), so a 10-person factory pays the same as a
+                  50-person one for the same ERP modules. Book a demo to see if we're a fit.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Bottom CTA strip */}
         <section className="py-20 relative z-10 bg-slate-900 border-t border-white/10 overflow-hidden">
           <div
