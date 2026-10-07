@@ -58,7 +58,7 @@ export default function AdminDashboard() {
 
   const tabs = [
     { id: 'overview', name: 'Dashboard', icon: <Activity className="w-5 h-5" /> },
-    { id: 'demoRequests', name: 'Demo Requests', icon: <PhoneCall className="w-5 h-5" />, badge: demoRequests.filter(d => d.status === 'Pending').length },
+    { id: 'demoRequests', name: 'Demo Requests', icon: <PhoneCall className="w-5 h-5" />, badge: demoRequests.filter(d => d.status === 'Lead Received').length },
     { id: 'content', name: 'Content Manager', icon: <Layout className="w-5 h-5" /> },
     { id: 'clients', name: 'Client Manager', icon: <Users className="w-5 h-5" /> },
     { id: 'products', name: 'Product Suite', icon: <Briefcase className="w-5 h-5" /> },
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
                   </div>
                   <div className="bg-slate-950 p-6 rounded-3xl border border-slate-800 flex flex-col relative overflow-hidden hover:border-brand-500/30 transition-all group">
                     <span className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2 group-hover:text-brand-400 transition-colors"><PhoneCall className="w-4 h-4" /> Demo Leads</span>
-                    <span className="text-4xl font-extrabold text-white">{demoRequests.filter(d => d.status === 'Pending').length}</span>
+                    <span className="text-4xl font-extrabold text-white">{demoRequests.filter(d => d.status === 'Lead Received').length}</span>
                   </div>
                 </div>
 
@@ -250,49 +250,126 @@ export default function AdminDashboard() {
               </div>
             )}
 
-            {/* Demo Requests Render */}
-            {activeTab === 'demoRequests' && (
-              <div className="divide-y divide-slate-800">
-                {demoRequests.length === 0 ? (
-                  <div className="text-center py-20">
-                     <PhoneCall className="w-16 h-16 text-slate-800 mx-auto mb-4 opacity-50" />
-                    <p className="text-slate-500 font-medium">No system leads detected.</p>
-                  </div>
-                ) : demoRequests.slice().reverse().map(d => (
-                  <div key={d.id} className="p-8 hover:bg-white/[0.02] transition-colors group">
-                    <div className="flex justify-between items-start mb-4">
-                       <div>
-                         <h4 className="text-2xl font-bold text-white mb-1 flex items-center gap-3">
-                           {d.name}
-                           {d.status === 'Contacted' && <CheckCircle className="w-5 h-5 text-emerald-400" />}
-                         </h4>
-                         <p className="text-slate-500 text-xs font-mono">{d.id} • {new Date(d.date).toLocaleString()}</p>
-                       </div>
-                      <span className={`px-4 py-1.5 text-[10px] uppercase tracking-widest font-extrabold rounded-full border ${d.status === 'Pending' ? 'bg-brand-500/10 text-brand-400 border-brand-500/20 shadow-[0_0_15px_rgba(20,184,166,0.1)]' : 'bg-slate-800/50 text-slate-500 border-white/5'}`}>
-                        {d.status}
+            {/* Demo Requests — 6-Stage CRM Kanban */}
+            {activeTab === 'demoRequests' && (() => {
+              const STAGES: { status: 'Lead Received' | 'Contacted' | 'Demo Booked' | 'No Show' | 'Closed Won' | 'Closed Lost'; label: string; color: string; headerColor: string; dotColor: string }[] = [
+                { status: 'Lead Received',  label: 'Lead Received',  color: 'border-brand-500/30 bg-brand-500/5',    headerColor: 'text-brand-400',   dotColor: 'bg-brand-400' },
+                { status: 'Contacted',      label: 'Contacted',      color: 'border-blue-500/30 bg-blue-500/5',      headerColor: 'text-blue-400',    dotColor: 'bg-blue-400' },
+                { status: 'Demo Booked',    label: 'Demo Booked',    color: 'border-violet-500/30 bg-violet-500/5',  headerColor: 'text-violet-400',  dotColor: 'bg-violet-400' },
+                { status: 'No Show',        label: 'No Show',        color: 'border-amber-500/30 bg-amber-500/5',    headerColor: 'text-amber-400',   dotColor: 'bg-amber-400' },
+                { status: 'Closed Won',     label: 'Closed Won',     color: 'border-emerald-500/30 bg-emerald-500/5',headerColor: 'text-emerald-400', dotColor: 'bg-emerald-400' },
+                { status: 'Closed Lost',    label: 'Closed Lost',    color: 'border-red-500/30 bg-red-500/5',        headerColor: 'text-red-400',     dotColor: 'bg-red-400' },
+              ];
+
+              const NEXT_STAGE: Record<string, 'Lead Received' | 'Contacted' | 'Demo Booked' | 'No Show' | 'Closed Won' | 'Closed Lost'> = {
+                'Lead Received': 'Contacted',
+                'Contacted':     'Demo Booked',
+                'Demo Booked':   'Closed Won',
+                'No Show':       'Contacted',
+                'Closed Won':    'Closed Won',
+                'Closed Lost':   'Closed Lost',
+              };
+
+              const moveToStage = (id: string, newStatus: 'Lead Received' | 'Contacted' | 'Demo Booked' | 'No Show' | 'Closed Won' | 'Closed Lost') =>
+                setDemoRequests(demoRequests.map(req => req.id === id ? { ...req, status: newStatus } : req));
+
+              const deleteLead = (id: string) =>
+                setDemoRequests(demoRequests.filter(req => req.id !== id));
+
+              if (demoRequests.length === 0) return (
+                <div className="text-center py-20">
+                  <PhoneCall className="w-16 h-16 text-slate-800 mx-auto mb-4 opacity-50" />
+                  <p className="text-slate-500 font-medium">No system leads detected.</p>
+                </div>
+              );
+
+              return (
+                <div className="p-6">
+                  {/* Totals bar */}
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    {STAGES.map(s => (
+                      <span key={s.status} className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${s.color} ${s.headerColor}`}>
+                        {s.label} · {demoRequests.filter(d => d.status === s.status).length}
                       </span>
-                    </div>
-                    <div className="flex flex-wrap gap-3 mb-6">
-                      <span className="bg-slate-950 border border-slate-800 px-4 py-2 rounded-xl text-slate-300 text-sm font-medium">📞 {d.phone}</span>
-                      <span className="bg-slate-950 border border-slate-800 px-4 py-2 rounded-xl text-slate-300 text-sm font-medium">✉️ {d.email}</span>
-                    </div>
-                    <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800 text-slate-300 text-sm leading-relaxed mb-6 group-hover:border-slate-700 transition">
-                      <span className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Project Requirement</span>
-                      {d.businessReq}
-                    </div>
-                    <div className="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => setDemoRequests(demoRequests.filter(req => req.id !== d.id))} className="px-6 py-2.5 text-xs text-red-500 hover:bg-red-500/10 rounded-xl transition border border-transparent hover:border-red-500/20 font-bold">Destroy</button>
-                      <button 
-                        onClick={() => setDemoRequests(demoRequests.map(req => req.id === d.id ? {...req, status: req.status === 'Pending' ? 'Contacted' : 'Pending'} : req))} 
-                        className={`px-6 py-2.5 text-xs font-bold rounded-xl transition border shadow-xl ${d.status === 'Pending' ? 'bg-emerald-500 text-white border-emerald-400 hover:bg-emerald-600' : 'bg-slate-800 text-slate-400 border-slate-700'}`}
-                      >
-                        {d.status === 'Pending' ? 'Finalize Contact' : 'Reset to Pending'}
-                      </button>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            )}
+
+                  {/* Kanban board — horizontally scrollable */}
+                  <div className="flex gap-4 overflow-x-auto pb-4">
+                    {STAGES.map(stage => {
+                      const leads = demoRequests.filter(d => d.status === stage.status);
+                      return (
+                        <div key={stage.status} className={`flex-shrink-0 w-72 rounded-2xl border ${stage.color} flex flex-col`}>
+                          {/* Column header */}
+                          <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
+                            <div className="flex items-center gap-2">
+                              <span className={`w-2 h-2 rounded-full ${stage.dotColor}`} />
+                              <span className={`text-xs font-black uppercase tracking-widest ${stage.headerColor}`}>{stage.label}</span>
+                            </div>
+                            <span className="text-xs font-bold text-slate-500 bg-slate-800 px-2 py-0.5 rounded-full">{leads.length}</span>
+                          </div>
+
+                          {/* Cards */}
+                          <div className="flex flex-col gap-3 p-3 flex-1">
+                            {leads.length === 0 && (
+                              <p className="text-center text-slate-700 text-xs py-8 italic">Empty</p>
+                            )}
+                            {leads.map(d => (
+                              <div key={d.id} className="bg-slate-900 border border-slate-800 rounded-xl p-4 hover:border-slate-700 transition-colors group/card">
+                                {/* Lead name + date */}
+                                <p className="text-sm font-bold text-white mb-0.5 leading-tight">{d.name}</p>
+                                <p className="text-[10px] text-slate-600 font-mono mb-3">{new Date(d.date).toLocaleDateString()}</p>
+
+                                {/* Contact chips */}
+                                <div className="flex flex-col gap-1.5 mb-3">
+                                  <span className="text-[11px] text-slate-400 truncate">📞 {d.phone}</span>
+                                  <span className="text-[11px] text-slate-400 truncate">✉️ {d.email}</span>
+                                </div>
+
+                                {/* Requirement snippet */}
+                                <p className="text-[11px] text-slate-500 leading-relaxed mb-4 line-clamp-3">{d.businessReq}</p>
+
+                                {/* Actions */}
+                                <div className="flex gap-2 opacity-0 group-hover/card:opacity-100 transition-opacity">
+                                  <button
+                                    onClick={() => deleteLead(d.id)}
+                                    className="flex-1 py-1.5 text-[10px] font-bold text-red-500 hover:bg-red-500/10 rounded-lg transition border border-transparent hover:border-red-500/20"
+                                  >
+                                    Delete
+                                  </button>
+                                  {/* Stage selector */}
+                                  <select
+                                    value={d.status}
+                                    onChange={e => moveToStage(d.id, e.target.value as 'Lead Received' | 'Contacted' | 'Demo Booked' | 'No Show' | 'Closed Won' | 'Closed Lost')}
+                                    className="flex-1 py-1.5 text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700 rounded-lg cursor-pointer hover:border-brand-500/40 transition"
+                                  >
+                                    <option value="Lead Received">Lead Received</option>
+                                    <option value="Contacted">Contacted</option>
+                                    <option value="Demo Booked">Demo Booked</option>
+                                    <option value="No Show">No Show</option>
+                                    <option value="Closed Won">Closed Won</option>
+                                    <option value="Closed Lost">Closed Lost</option>
+                                  </select>
+                                </div>
+                                {/* Quick-advance button */}
+                                {stage.status !== 'Closed Won' && stage.status !== 'Closed Lost' && (
+                                  <button
+                                    onClick={() => moveToStage(d.id, NEXT_STAGE[stage.status])}
+                                    className={`w-full mt-2 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg transition border opacity-0 group-hover/card:opacity-100 ${stage.headerColor} border-current hover:bg-white/5`}
+                                  >
+                                    → {NEXT_STAGE[stage.status]}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Testimonials Tab Render */}
             {activeTab === 'testimonials' && (

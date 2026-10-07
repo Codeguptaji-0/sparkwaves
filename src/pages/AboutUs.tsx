@@ -1,196 +1,297 @@
 import { motion } from 'framer-motion';
-import { Target, Rocket, ShieldCheck, Zap, Cog, Activity, Code2, Globe } from 'lucide-react';
+import { Target, Rocket, ShieldCheck, Zap, Globe, Code2 } from 'lucide-react';
 import Footer from '../components/Footer';
 import Team from '../components/Team';
-
 import { useSEO } from '../hooks/useSEO';
 
 export default function AboutUs() {
   useSEO({
-    title: 'About Us - The Hybrid SaaS Advantage | Sparkwaves',
-    description: 'Learn about the vision, mission, and expert team behind Sparkwaves. Engineering next-generation digital infrastructure for enterprise scale.',
-    keywords: 'about sparkwaves, team, hybrid SaaS model, software agency founders, engineering vision'
+    title: 'About Sparkwaves Production — Software Company in Mukandpur, Delhi',
+    description:
+      'Sparkwaves Production — 4 human experts + 37 AI agents, Mukandpur, Delhi. We build ERP systems, school management software, and GeM-ready IT solutions for manufacturers, schools, and government buyers. MSME certified.',
+    keywords:
+      'Sparkwaves Production about, software company Mukandpur Delhi, MSME IT company Delhi, who is Sparkwaves, Indian software startup, manufacturing ERP company India, GeM IT vendor Delhi',
   });
+
   return (
     <>
-      <main className="min-h-screen bg-slate-950 text-white pt-24 overflow-hidden relative selection:bg-brand-500/30">
-        
-        {/* Background Atmosphere */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[150px] pointer-events-none"></div>
-        <div className="absolute bottom-96 left-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+      <main className="min-h-screen bg-slate-950 text-white pt-24 overflow-hidden relative">
+
+        {/* Ambient background */}
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-500/8 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-80 left-0 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 relative z-10">
-          
-          {/* Header Story */}
-          <section className="py-16 md:py-24 text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-full text-xs font-bold tracking-widest uppercase mb-8"
+
+          {/* ── Origin story ── */}
+          <section className="py-16 md:py-24 max-w-4xl">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="text-xs font-semibold tracking-widest text-brand-400 uppercase mb-6"
             >
-               Our Origin
-            </motion.div>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8"
+              Our story
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.06 }}
+              className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.95]"
             >
-              Architecting the <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-500">Future of Work.</span>
+              Built in Delhi.{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-400">
+                For India.
+              </span>
             </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-400 leading-relaxed"
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.12 }}
+              className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl"
             >
-              Sparkwaves Production was founded on a simple principle: enterprise software doesn't have to be sluggish, bloated, or ugly. We fuse high-performance engineering with visually stunning aesthetics to create platforms that businesses actually want to use.
+              Sparkwaves Production started from a simple observation: Indian manufacturers, schools, and government departments were stuck with either overpriced enterprise software from big vendors or unreliable freelancers who disappeared after delivery. We built a third option — a lean team of 4 people backed by 37 specialised AI agents, delivering faster, smarter, and at 30% below Delhi market rates. Human accountability, AI speed.
             </motion.p>
           </section>
 
-          {/* Mission & Vision Grid */}
-          <section className="py-16">
+          {/* ── Mission & Vision ── */}
+          <section className="py-16 border-t border-slate-800/50">
             <div className="grid md:grid-cols-2 gap-8">
-              <motion.div 
-                initial={{ opacity: 0, x: -50 }}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-10 hover:border-brand-500/50 transition-colors shadow-2xl"
+                transition={{ duration: 0.4 }}
+                className="bg-slate-900 border border-slate-800 rounded-2xl p-10 hover:border-brand-500/40 transition-colors duration-200"
               >
-                <div className="w-14 h-14 bg-brand-500/20 rounded-2xl flex items-center justify-center mb-6 border border-brand-500/30">
-                  <Target className="w-7 h-7 text-brand-400" />
+                <div className="w-12 h-12 bg-brand-500/15 rounded-xl flex items-center justify-center mb-6 border border-brand-500/20">
+                  <Target className="w-6 h-6 text-brand-400" strokeWidth={1.8} />
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
-                <p className="text-slate-400 leading-relaxed text-lg">
-                  To eliminate systemic bottlenecks in massive industries—like education, logistics, and retail—by deploying radically efficient, cloud-native software ecosystems that replace analog chaos with algorithmic precision.
+                <h3 className="text-2xl font-bold mb-4">Mission</h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Make professional software accessible to every Indian factory, school, and government office — at a price they can afford, in a language they can understand, with support that doesn't disappear after payment.
                 </p>
               </motion.div>
 
-              <motion.div 
-                initial={{ opacity: 0, x: 50 }}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800 rounded-3xl p-10 hover:border-blue-500/50 transition-colors shadow-2xl"
+                transition={{ duration: 0.4 }}
+                className="bg-slate-900 border border-slate-800 rounded-2xl p-10 hover:border-blue-500/40 transition-colors duration-200"
               >
-                <div className="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 border border-blue-500/30">
-                  <Rocket className="w-7 h-7 text-blue-400" />
+                <div className="w-12 h-12 bg-blue-500/15 rounded-xl flex items-center justify-center mb-6 border border-blue-500/20">
+                  <Rocket className="w-6 h-6 text-blue-400" strokeWidth={1.8} />
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
-                <p className="text-slate-400 leading-relaxed text-lg">
-                  We foresee a digital horizon where our unified tools—E-comos, Eudsaas, and FuelOps—run the invisible infrastructure of thousands of scaling organizations globally, securely and reliably.
+                <h3 className="text-2xl font-bold mb-4">Vision</h3>
+                <p className="text-slate-400 leading-relaxed">
+                  India's manufacturing sector, 1.5 million schools, and thousands of government departments — all running on reliable, homegrown software built by Indian teams who understand the local regulatory and operational reality.
                 </p>
               </motion.div>
             </div>
           </section>
 
-          {/* What We Do */}
-          <section className="py-24 border-t border-slate-800/50 mt-12">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">What We Do</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">We design robust, high-performance systems to solve complex operational challenges, eliminating scalability bottlenecks before they affect your bottom line.</p>
-            </div>
-            
+          {/* ── What we actually build ── */}
+          <section className="py-20 border-t border-slate-800/50">
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35 }}
+              className="mb-14"
+            >
+              <p className="text-xs font-semibold tracking-widest text-brand-400 uppercase mb-4">What we build</p>
+              <h2 className="text-4xl font-black text-white tracking-tight mb-4">Three sectors. Real software.</h2>
+              <p className="text-slate-400 max-w-2xl">
+                Not a generic agency pitch. These are the actual systems we deliver.
+              </p>
+            </motion.div>
+
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { icon: <Code2 />, title: "SaaS Development", desc: "Building proprietary ecosystems like E-comos and Eudsaas." },
-                { icon: <Cog />, title: "Custom Engineering", desc: "Crafting bespoke enterprise applications specifically tailored to operational logic." },
-                { icon: <Activity />, title: "Data Intelligence", desc: "Aggregating metrics, telemetry, and analytics into actionable dashboards." }
-              ].map((item, i) => (
-                <div key={i} className="p-8 bg-slate-950 border border-slate-800 rounded-2xl">
-                  <div className="text-brand-400 mb-6">{item.icon}</div>
-                  <h4 className="text-xl font-bold mb-3">{item.title}</h4>
-                  <p className="text-slate-400 text-sm">{item.desc}</p>
-                </div>
-              ))}
+                {
+                  icon: Code2,
+                  color: 'text-brand-400',
+                  bg: 'bg-brand-500/10',
+                  title: 'Manufacturing ERP',
+                  desc: 'Inventory, production tracking, supplier billing, GST-compliant invoicing — built around how your factory actually runs.',
+                },
+                {
+                  icon: Globe,
+                  color: 'text-violet-400',
+                  bg: 'bg-violet-500/10',
+                  title: 'School Management',
+                  desc: 'Admission portals, fees, attendance, report cards, and parent communication — one dashboard, no Excel sheets.',
+                },
+                {
+                  icon: ShieldCheck,
+                  color: 'text-blue-400',
+                  bg: 'bg-blue-500/10',
+                  title: 'Government & GeM IT',
+                  desc: 'GeM-ready procurement systems, department digitisation, shift tracking, and custom IT solutions for public sector buyers.',
+                },
+              ].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: i * 0.1 }}
+                    className="p-8 bg-slate-900 border border-slate-800 rounded-2xl hover:border-slate-600 transition-colors duration-200"
+                  >
+                    <div className={`w-10 h-10 ${item.bg} rounded-lg flex items-center justify-center mb-5`}>
+                      <Icon className={`w-5 h-5 ${item.color}`} strokeWidth={1.8} />
+                    </div>
+                    <h4 className="text-xl font-bold mb-3">{item.title}</h4>
+                    <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </section>
 
-          {/* Core Values Section */}
-          <section className="py-24 border-t border-slate-800/50">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-xs font-bold tracking-widest uppercase mb-4">
-                Our Foundation
-              </div>
-              <h2 className="text-4xl font-bold mb-4">Core Corporate Values</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">The engineering principles that guide our architecture, client partnerships, and delivery standards.</p>
-            </div>
-            
+          {/* ── Core values ── */}
+          <section className="py-20 border-t border-slate-800/50">
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35 }}
+              className="mb-14"
+            >
+              <p className="text-xs font-semibold tracking-widest text-brand-400 uppercase mb-4">How we work</p>
+              <h2 className="text-4xl font-black text-white tracking-tight">Four rules we don't break.</h2>
+            </motion.div>
+
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { title: "Technical Excellence", desc: "We design software on clean, modular architectures that scale from day one, avoiding technical debt." },
-                { title: "Operational Precision", desc: "We replace manual bottlenecks with automated workflows, achieving extreme operational efficiency." },
-                { title: "Data Integrity", desc: "We enforce strict encryption and security protocols across all our internal and custom client pipelines." },
-                { title: "Client Trust", desc: "We establish long-term partnerships driven by uptime reliability, absolute transparency, and SLA compliance." }
+                {
+                  num: '01',
+                  title: 'Fixed prices only',
+                  desc: "We quote before we build. If something takes longer, that's our problem — not yours.",
+                },
+                {
+                  num: '02',
+                  title: 'No outsourcing',
+                  desc: '4 human experts + 37 AI agents, all working from our office in Mukandpur. No freelancers, no outsourcing, no black boxes.',
+                },
+                {
+                  num: '03',
+                  title: 'Plain language',
+                  desc: 'Contracts, quotes, and handover notes in Hindi or English — whichever works for your team.',
+                },
+                {
+                  num: '04',
+                  title: 'Post-launch support',
+                  desc: 'We train your staff, fix bugs, and remain reachable on WhatsApp — not just during the project.',
+                },
               ].map((val, i) => (
-                <div key={i} className="p-6 bg-slate-900/40 border border-slate-800 rounded-2xl hover:border-brand-500/30 transition-colors">
-                  <span className="text-3xl font-extrabold text-brand-500/30 block mb-4">0{i+1}</span>
-                  <h4 className="text-lg font-bold text-white mb-2">{val.title}</h4>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.08 }}
+                  className="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl hover:border-slate-600 transition-colors duration-200"
+                >
+                  <span className="text-3xl font-black text-brand-500/25 block mb-4">{val.num}</span>
+                  <h4 className="text-base font-bold text-white mb-2">{val.title}</h4>
                   <p className="text-slate-400 text-sm leading-relaxed">{val.desc}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </section>
 
-          {/* Why Choose Us */}
-          <section className="py-24 border-t border-slate-800/50">
-             <div className="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                   <h2 className="text-4xl font-bold mb-6">Why Choose Sparkwaves?</h2>
-                   <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                     When you partner with us or deploy our platforms, you aren't fighting legacy tech debt. You're adopting modernized logic. Our tech stack relies on robust WebGL rendering, Framer-accelerated UI drops, and uncompromising database security. 
-                   </p>
-                   <ul className="space-y-6">
-                      <li className="flex items-start gap-4">
-                        <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-400"><ShieldCheck className="w-6 h-6"/></div>
+          {/* ── Why choose us ── */}
+          <section className="py-20 border-t border-slate-800/50">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+              >
+                <h2 className="text-4xl font-black text-white mb-6 tracking-tight">
+                  Why not just hire a freelancer?
+                </h2>
+                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                  Freelancers disappear. Agencies overcharge and outsource anyway. With Sparkwaves, you get a team with a fixed office address, a registered MSME certificate, and skin in the game — because our reputation depends on your system working.
+                </p>
+                <ul className="space-y-5">
+                  {[
+                    {
+                      icon: ShieldCheck,
+                      color: 'text-emerald-400',
+                      bg: 'bg-emerald-500/10',
+                      title: 'MSME Certificate',
+                      sub: 'Registered, auditable, accountable. Not a WhatsApp number.',
+                    },
+                    {
+                      icon: Zap,
+                      color: 'text-brand-400',
+                      bg: 'bg-brand-500/10',
+                      title: '30% below market price',
+                      sub: 'Verified across Delhi NCR rates for comparable custom software.',
+                    },
+                    {
+                      icon: Globe,
+                      color: 'text-blue-400',
+                      bg: 'bg-blue-500/10',
+                      title: 'GeM-ready IT solutions',
+                      sub: 'Everything meets government procurement compliance rules out of the box.',
+                    },
+                  ].map((item, i) => {
+                    const Icon = item.icon;
+                    return (
+                      <li key={i} className="flex items-start gap-4">
+                        <div className={`p-2 ${item.bg} rounded-lg shrink-0 mt-0.5`}>
+                          <Icon className={`w-5 h-5 ${item.color}`} strokeWidth={1.8} />
+                        </div>
                         <div>
-                          <h4 className="font-bold text-white">Military-Grade Encryption</h4>
-                          <p className="text-sm text-slate-400">All data transferred between your organization and our servers is strictly end-to-end encrypted.</p>
+                          <h4 className="font-bold text-white text-sm">{item.title}</h4>
+                          <p className="text-sm text-slate-400">{item.sub}</p>
                         </div>
                       </li>
-                      <li className="flex items-start gap-4">
-                        <div className="p-2 bg-purple-500/10 rounded-lg text-purple-400"><Zap className="w-6 h-6"/></div>
-                        <div>
-                          <h4 className="font-bold text-white">Zero Latency UI/UX</h4>
-                          <p className="text-sm text-slate-400">Built on React 18 & Edge-computing architectures to ensure blink-of-an-eye interface updates.</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-4">
-                        <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400"><Globe className="w-6 h-6"/></div>
-                        <div>
-                          <h4 className="font-bold text-white">Worldwide Scalability</h4>
-                          <p className="text-sm text-slate-400">Our backends automatically auto-scale to meet your peak transactional loads without downtime.</p>
-                        </div>
-                      </li>
-                   </ul>
-                </div>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-blue-500/20 blur-3xl transform rotate-12"></div>
-                  <div className="bg-slate-900 border border-slate-700 p-8 rounded-3xl relative z-10 shadow-2xl">
-                    <div className="flex justify-between items-end mb-8">
-                       <div>
-                         <span className="block text-slate-400 text-sm mb-1 uppercase tracking-widest font-bold">System Status</span>
-                         <span className="text-2xl font-bold text-emerald-400 flex items-center gap-2">
-                           <span className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></span> 100% Operational
-                         </span>
-                       </div>
+                    );
+                  })}
+                </ul>
+              </motion.div>
+
+              {/* Right: quick stats panel */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl"
+              >
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-7">At a glance</p>
+                <div className="space-y-6">
+                  {[
+                    { label: 'Projects delivered', value: '100+' },
+                    { label: 'Years in operation', value: '3+' },
+                    { label: 'Human team', value: '4 people' },
+                    { label: 'AI agents', value: '37 active' },
+                    { label: 'Office location', value: 'Mukandpur, Delhi' },
+                    { label: 'MSME number', value: 'UDYAM-DL-01-0063225' },
+                    { label: 'GeM vendor', value: 'Yes' },
+                  ].map(({ label, value }) => (
+                    <div key={label} className="flex justify-between items-baseline border-b border-slate-800 pb-4 last:border-0 last:pb-0">
+                      <span className="text-slate-400 text-sm">{label}</span>
+                      <span className="text-white font-bold text-sm">{value}</span>
                     </div>
-                    <div className="space-y-4">
-                      <div className="h-2 bg-slate-800 rounded-full overflow-hidden"><div className="h-full bg-brand-500 w-[98%]"></div></div>
-                      <div className="h-2 bg-slate-800 rounded-full overflow-hidden"><div className="h-full bg-blue-500 w-[95%]"></div></div>
-                      <div className="h-2 bg-slate-800 rounded-full overflow-hidden"><div className="h-full bg-purple-500 w-[100%]"></div></div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-             </div>
+              </motion.div>
+            </div>
           </section>
         </div>
 
-        {/* Team Module at the bottom */}
-        <div className="border-t border-slate-800/50 pt-16 bg-slate-950 relative z-20">
-           <Team />
+        {/* Team */}
+        <div className="border-t border-slate-800/50 bg-slate-950 relative z-20 mt-8">
+          <Team />
         </div>
       </main>
       <Footer />

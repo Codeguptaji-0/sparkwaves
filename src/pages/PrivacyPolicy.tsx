@@ -55,7 +55,7 @@ const PrivacyPolicy = () => {
                 </li>
                 <li className="flex gap-4 p-4 bg-slate-950/50 rounded-2xl border border-white/5">
                   <div className="w-2 h-2 rounded-full bg-brand-500 mt-2 shrink-0 shadow-[0_0_10px_rgba(20,184,166,0.8)]"></div>
-                  <p className="text-slate-400"><strong className="text-white">Technical Data:</strong> IP addresses, browser types, and hardware analytics necessary for rendering our 3D WebGL components safely.</p>
+                  <p className="text-slate-400"><strong className="text-white">Technical Data:</strong> IP addresses, browser types, and device analytics collected to maintain service security, diagnose errors, and optimise platform performance.</p>
                 </li>
               </ul>
             </section>

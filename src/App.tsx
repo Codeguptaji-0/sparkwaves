@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import FloatingContactBtn from './components/FloatingContactBtn';
-import Scene3D from './components/Scene3D';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Services from './pages/Services';
@@ -14,6 +13,7 @@ import NotFound from './pages/NotFound';
 import TeamPage from './pages/TeamPage';
 
 import BookDemo from './pages/BookDemo';
+import DemoConfirmation from './pages/DemoConfirmation';
 import CookieBanner from './components/CookieBanner';
 import FeedbackWidget from './components/FeedbackWidget';
 import AdminAuth from './pages/AdminAuth';
@@ -40,8 +40,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-slate-950 font-sans selection:bg-brand-500/30 text-white relative">
-        <Scene3D />
-        
         <div className="relative z-10 flex flex-col min-h-screen">
           <LayoutWrapper>
             <Routes>
@@ -51,6 +49,7 @@ function App() {
               <Route path="/about" element={<AboutUs />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/demo" element={<BookDemo />} />
+              <Route path="/demo/confirmation" element={<DemoConfirmation />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/changelog" element={<Changelog />} />

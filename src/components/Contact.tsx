@@ -80,7 +80,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="text-xl font-bold text-white">Location</h4>
-                <p className="text-slate-400 mt-1">Delhi, India</p>
+                <p className="text-slate-400 mt-1">Mukandpur, Delhi</p>
               </div>
             </div>
 
@@ -92,16 +92,12 @@ const Contact = () => {
                 <h4 className="text-xl font-bold text-white">Direct Lines</h4>
                 <div className="flex flex-col gap-2 mt-2 mb-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-slate-400 w-32">+91 9891081354</span>
-                    <span className="text-xs px-2 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Call Only</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-slate-400 w-32">+91 8601924292</span>
+                    <span className="text-slate-400 w-32">+91 9891081934</span>
                     <span className="text-xs px-2 py-1 rounded bg-brand-500/10 text-brand-400 border border-brand-500/20">Call + WhatsApp</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-slate-400 w-32">+91 9968167150</span>
-                    <span className="text-xs px-2 py-1 rounded bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/20">WhatsApp Only</span>
+                    <span className="text-slate-400 w-32">+91 8601924292</span>
+                    <span className="text-xs px-2 py-1 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Call only</span>
                   </div>
                 </div>
               </div>
@@ -153,10 +149,10 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-white mb-4">Support Hub</h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
-                  <a href="https://wa.me/919968167150" target="_blank" rel="noopener noreferrer" className="w-full py-4 px-4 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 hover:border-[#25D366] text-white font-medium rounded-xl flex items-center justify-between group transition-all">
+                  <a href="https://wa.me/919891081934" target="_blank" rel="noopener noreferrer" className="w-full py-4 px-4 bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 hover:border-[#25D366] text-white font-medium rounded-xl flex items-center justify-between group transition-all">
                     <div className="flex items-center gap-2"><MessageCircle className="w-5 h-5 text-[#25D366]" /><span>WhatsApp</span></div>
                   </a>
-                  <a href="tel:+919891081354" className="w-full py-4 px-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-medium rounded-xl flex items-center justify-between group transition-all">
+                  <a href="tel:+919891081934" className="w-full py-4 px-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-medium rounded-xl flex items-center justify-between group transition-all">
                     <div className="flex items-center gap-2"><Phone className="w-5 h-5 text-slate-300 group-hover:text-white" /><span>Call Us</span></div>
                   </a>
                 </div>

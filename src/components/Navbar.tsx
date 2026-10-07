@@ -25,16 +25,16 @@ const Navbar = () => {
 
   return (
     <motion.header 
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: -8, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
       className="fixed top-4 inset-x-0 z-50 flex justify-center px-4 md:px-8 pointer-events-none"
     >
       <div 
         className={`w-full max-w-6xl rounded-full border transition-all duration-500 py-3 px-6 md:px-8 flex justify-between items-center shadow-2xl pointer-events-auto ${
-          isScrolled 
-            ? 'bg-slate-950/75 border-white/10 backdrop-blur-lg py-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)]' 
-            : 'bg-slate-900/10 border-transparent backdrop-blur-sm py-4'
+          isScrolled
+            ? 'bg-slate-950/90 border-white/10 backdrop-blur-lg py-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)]'
+            : 'bg-slate-950/70 border-white/8 backdrop-blur-md py-4'
         }`}
       >
         {/* Logo */}
@@ -48,7 +48,7 @@ const Navbar = () => {
             <Link 
               key={link.name}
               to={link.href}
-              className="text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white transition-colors relative group"
+              className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group"
             >
               {link.name}
               <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-brand-400 transition-all group-hover:w-1/2"></span>
@@ -56,7 +56,7 @@ const Navbar = () => {
           ))}
           <Link 
             to="/contact"
-            className="px-5 py-2.5 bg-gradient-to-r from-brand-500 to-teal-500 hover:from-brand-600 hover:to-teal-600 text-white text-xs font-bold uppercase tracking-wider rounded-full transition-all hover:shadow-[0_0_20px_rgba(20,184,166,0.4)]"
+            className="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-full transition-all"
           >
             Contact Us
           </Link>
@@ -95,7 +95,7 @@ const Navbar = () => {
             <Link 
               to="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-4 px-6 py-3.5 bg-gradient-to-r from-brand-500 to-teal-500 text-center text-white font-bold rounded-2xl hover:from-brand-600 hover:to-teal-600 transition-colors uppercase tracking-wider text-sm"
+              className="mt-4 px-6 py-3.5 bg-brand-500 text-center text-white font-semibold rounded-2xl hover:bg-brand-600 transition-colors text-sm"
             >
               Let's Talk
             </Link>

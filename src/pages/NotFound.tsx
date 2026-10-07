@@ -7,7 +7,7 @@ import { useSEO } from '../hooks/useSEO';
 export default function NotFound() {
   useSEO({
     title: 'Page Not Found - Sparkwaves',
-    description: 'The requested page could not be found. Go back to Sparkwaves home page to explore our services and SaaS products.',
+    description: 'The requested page could not be found. Go back to Sparkwaves Production home page to explore our ERP systems, school management software, and GeM IT services.',
     keywords: '404 not found, sparkwaves, error'
   });
 

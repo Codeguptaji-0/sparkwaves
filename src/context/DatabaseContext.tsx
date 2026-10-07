@@ -73,7 +73,7 @@ export interface DemoRequest {
   phone: string;
   businessReq: string;
   date: string;
-  status: 'Pending' | 'Contacted';
+  status: 'Lead Received' | 'Contacted' | 'Demo Booked' | 'No Show' | 'Closed Won' | 'Closed Lost';
 }
 
 export interface Settings {
@@ -141,27 +141,27 @@ const DEFAULT_PRODUCTS: Product[] = [
 const DEFAULT_SERVICES: Service[] = [
   {
     id: 's1',
-    title: "Cloud & Infrastructure",
-    description: "Scale effortlessly with secure, robust infrastructure tailored for high-availability enterprise applications.",
-    features: ["Custom Hosted Architecture", "IaaS / PaaS Deployments", "Premium Web Hosting"]
+    title: "Manufacturing ERP",
+    description: "End-to-end ERP built for Indian factories — inventory, production tracking, GST-compliant invoicing, supplier billing, and Vyapaar-ready workflows.",
+    features: ["Inventory & Stock Management", "GST-Compliant Invoicing", "Production Tracking"]
   },
   {
     id: 's2',
-    title: "Web & App Development",
-    description: "Deliver stunning, high-performance web and mobile experiences engineered for maximum user engagement.",
-    features: ["Full-Stack Web Apps", "Native iOS & Android", "AI-Powered Experiences"]
+    title: "School Management Software",
+    description: "Complete school operations platform: admissions, fee collection, attendance, report cards, and parent communication — all in one dashboard.",
+    features: ["Admission & Fee Portals", "Attendance & Report Cards", "Parent Communication"]
   },
   {
     id: 's3',
-    title: "Data Intelligence",
-    description: "Transform raw organizational data into actionable, predictive intelligence to outpace competitors.",
-    features: ["Big Data Analysis", "Predictive Modeling", "Custom Data Pipelines"]
+    title: "GeM & Government IT",
+    description: "GeM-ready procurement systems, department digitisation, and custom IT solutions built for public sector compliance and L1 bidding.",
+    features: ["GeM-Ready Procurement", "Department Digitisation", "Govt. Compliance Systems"]
   },
   {
     id: 's4',
-    title: "Automation & Growth",
-    description: "Automate repetitive tasks and supercharge your acquisition channels for exponential revenue growth.",
-    features: ["Workflow Automation", "Performance Marketing", "Lead Generation Systems"]
+    title: "AI Workflow Automation",
+    description: "37 in-house AI agents handling sales, support, finance, and content — delivering enterprise-level capacity at startup pricing.",
+    features: ["Sales & Lead Automation", "AI-Powered Support", "Finance & Invoice Agents"]
   }
 ];
 
