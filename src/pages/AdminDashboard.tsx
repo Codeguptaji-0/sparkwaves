@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDatabase } from '../context/DatabaseContext';
 import type { ClientDocument } from '../context/DatabaseContext';
-import { 
-  Users, Ticket, MessageSquare, Briefcase, LogOut, 
-  Settings, Trash2, Plus, Mail, Activity, Cloud, PhoneCall, 
-  CheckCircle, Eye, Layout, List, FileText 
+import {
+  Users, Ticket, MessageSquare, Briefcase, LogOut,
+  Settings, Trash2, Plus, Mail, Activity, Cloud, PhoneCall,
+  Eye, Layout, List, FileText
 } from 'lucide-react';
 
 import { useSEO } from '../hooks/useSEO';

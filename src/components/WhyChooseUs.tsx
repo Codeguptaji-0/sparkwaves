@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { BadgeCheck, IndianRupee, Users, MapPin, Bot } from 'lucide-react';
+import { BadgeCheck, IndianRupee, MapPin, Bot } from 'lucide-react';
 
 const differentiators = [
   {

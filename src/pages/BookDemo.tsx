@@ -246,7 +246,7 @@ export default function BookDemo() {
                         <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-3">Industry</label>
                         <div className="grid grid-cols-1 gap-2">
                           {INDUSTRIES.map(ind => {
-                            const Icon = ind.icon;
+                            const Icon = ind.icon as React.FC<React.SVGProps<SVGSVGElement> & { strokeWidth?: number }>;
                             const selected = step1.industry === ind.value;
                             return (
                               <button

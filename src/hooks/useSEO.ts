@@ -9,6 +9,7 @@ export interface SEOProps {
   ogImage?: string;
   ogUrl?: string;
   schema?: Record<string, any>;
+  noIndex?: boolean;
 }
 
 export function useSEO({
